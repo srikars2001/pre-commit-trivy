@@ -1,12 +1,11 @@
-- id: trivyfs-docker
-  name: trivyfs-docker
-  entry: aquasec/trivy:0.57.1 fs --cache-dir /src/.pre-commit-trivy-cache --exit-code 1
-  language: docker_image
+- id: trivyfs-podman
+  name: trivyfs-podman
+  entry: podman run --rm -v $(pwd):/src:Z aquasec/trivy:0.57.1 fs --cache-dir /src/.pre-commit-trivy-cache --exit-code 1
+  language: system
   pass_filenames: false
 
-- id: trivyconfig-docker
-  name: trivyconfig-docker
-  entry: aquasec/trivy:0.57.1 config --cache-dir /src/.pre-commit-trivy-cache --exit-code 1
-  language: docker_image
+- id: trivyconfig-podman
+  name: trivyconfig-podman
+  entry: podman run --rm -v $(pwd):/src:Z aquasec/trivy:0.57.1 config --cache-dir /src/.pre-commit-trivy-cache --exit-code 1
+  language: system
   pass_filenames: false
-
